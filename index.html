@@ -1,47 +1,62 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Boggle Game</title>
     <link rel="stylesheet" href="styles.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-</head>
-<body>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+  </head>
+  <body>
     <header>
-        <nav>
-            <div class="nav-left">Boggle</div>
-            <div class="nav-right">
-                Mejor Puntuación: <span id="highScore">0</span>
-            </div>
-        </nav>
+      <nav>
+        <div class="nav-left">Boggle</div>
+        <div class="nav-right">
+          Mejor Puntuación: <span id="highScore">0</span>
+        </div>
+      </nav>
     </header>
     <main>
-        <div id="startScreen">
-            <button id="startButton">Comenzar</button>
+      <div id="startScreen">
+        <div class="timer-buttons">
+          <button id="90SecondsButton">90 Seconds</button>
+          <button id="3MinutesButton">3 Minutes</button>
+          <button id="5MinutesButton">5 Minutes</button>
         </div>
-        <div id="gameBoard" class="hidden">
-            <div id="timer">Tiempo restante: <span id="timeRemaining">60</span> segundos</div>
-            <div id="board" class="grid"></div>
-            <div id="wordInputSection">
-                <div id="currentWord">Palabra: </div>
-                <div id="buttonsContainer">
-                    <button id="checkWordButton" disabled><i class="fas fa-check"></i></button>
-                    <button id="clearSelectionButton"><i class="fas fa-times"></i></button>
-                    <button id="removeLastLetterButton"><i class="fas fa-backspace"></i></button>
-                </div>
-            </div>
-            <div id="wordResult"></div>
-            <div id="foundWordsContainer">
-                <h3>Palabras encontradas:</h3>
-                <ul id="foundWordsList"></ul>
-            </div>
+      </div>
+      <div id="gameBoard" class="hidden">
+        <div id="timer">
+          Tiempo restante: <span id="timeRemaining">60</span> segundos
         </div>
+        <div id="board" class="grid"></div>
+        <div id="wordInputSection">
+          <div id="currentWord">Palabra:</div>
+          <div id="buttonsContainer">
+            <button id="checkWordButton" disabled>
+              <i class="fas fa-check"></i>
+            </button>
+            <button id="clearSelectionButton">
+              <i class="fas fa-times"></i>
+            </button>
+            <button id="removeLastLetterButton">
+              <i class="fas fa-backspace"></i>
+            </button>
+          </div>
+        </div>
+        <div id="wordResult"></div>
+        <div id="foundWordsContainer">
+          <h3>Palabras encontradas:</h3>
+          <ul id="foundWordsList"></ul>
+        </div>
+      </div>
     </main>
     <footer>
-        <p></p>
+      <p></p>
     </footer>
-    <script src="js/main.js" defer></script>
+    <script src="js/board.js" defer></script>
     <script src="js/game.js" defer></script>
-</body>
+  </body>
 </html>

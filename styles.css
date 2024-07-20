@@ -23,6 +23,64 @@ header .nav-right {
     align-items: center;
 }
 
+/* Start Button Styles */
+#startScreen {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+#startScreen button {
+    padding: 1rem 2rem;
+    background-color: #131842;
+    color: white;
+    border: 2px solid #131842;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 0.5rem;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+#startScreen button:hover {
+    background-color: #1f2a6e; /* Darker shade for hover effect */
+    transform: scale(1.05);
+}
+
+#startScreen button:active {
+    background-color: #0d173f; /* Even darker shade for active effect */
+}
+
+/* Button Specific Styles */
+#startButton {
+    display: none; /* Hide original button */
+}
+
+/* New Timer Buttons */
+#startScreen .timer-buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+#startScreen .timer-buttons button {
+    padding: 1rem 2rem;
+    background-color: #ECCEAE; /* Use the same color as the grid cells */
+    color: #131842;
+    border: 2px solid #131842;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+#startScreen .timer-buttons button:hover {
+    background-color: #E68369; /* Use the same color as selected cells */
+}
+
 /* Main Styles */
 main {
     flex: 1;
@@ -32,12 +90,6 @@ main {
     justify-content: center;
 }
 
-#startScreen {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-}
 
 /* Game Board Styles */
 #gameBoard.hidden {
