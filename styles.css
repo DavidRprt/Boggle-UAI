@@ -1,0 +1,143 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Header Styles */
+header {
+    background-color: #131842;
+    color: white;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header .nav-left,
+header .nav-right {
+    display: flex;
+    align-items: center;
+}
+
+/* Main Styles */
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#startScreen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+/* Game Board Styles */
+#gameBoard.hidden {
+    display: none;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1rem;
+    width: 100%;
+    max-width: 20rem;
+}
+
+.cell {
+    width: 4rem;
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ECCEAE; 
+    color: #131842;
+    font-weight: bold;
+    font-size: 1.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    border: 2px solid #131842;
+}
+
+/* Selected Cell Styles */
+.selected {
+    background-color: #E68369; 
+    border: 2px solid #131842; 
+}
+
+/* Selectable Cell Styles */
+.selectable {
+    background-color: #FBF6E2; 
+    border: 2px solid #131842;
+}
+
+/* Word Input Container Styles */
+#wordInputSection {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 20rem;
+    margin-top: 20px;
+}
+
+#currentWord {
+    flex-grow: 1;
+    background-color: #ECCEAE;
+    color: #131842;
+    font-weight: bold;
+    font-size: 1rem;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    border: 2px solid #131842;
+    text-align: left;
+}
+
+#buttonsContainer {
+    display: flex;
+    gap: 5px;
+    margin-left: 10px;
+}
+
+#buttonsContainer button {
+    padding: 0.5rem;
+    background-color: #131842;
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-size: 1.2rem;
+    width: 2.5rem;
+    height: 2.5rem;
+}
+
+#buttonsContainer button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+/* Found Words Container Styles */
+#foundWordsContainer {
+    margin-top: 20px;
+}
+
+/* Footer Styles */
+footer {
+    background-color: #131842;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
