@@ -85,34 +85,4 @@ function generateBoard() {
   return newBoard
 }
 
-// Function to start the game
-function startGame(duration) {
-  document.getElementById("startScreen").style.display = "none"
-  document.getElementById("gameBoard").classList.remove("hidden")
-  renderBoard()
-  setTimer(duration)
-}
 
-function setTimer(duration) {
-  const timeRemainingElement = document.getElementById("timeRemaining")
-  timeRemainingElement.textContent = duration
-  let timerInterval = null
-
-  if (timerInterval) clearInterval(timerInterval)
-
-  timerInterval = setInterval(() => {
-    duration--
-    timeRemainingElement.textContent = duration
-
-    if (duration <= 0) {
-      clearInterval(timerInterval)
-      endGame()
-    }
-  }, 1000) // Update every second
-}
-
-function endGame() {
-  alert("Tiempo agotado!")
-  document.getElementById("gameBoard").classList.add("hidden")
-  document.getElementById("startScreen").style.display = "flex"
-}

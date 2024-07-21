@@ -1,195 +1,345 @@
 /* General Styles */
 body {
-    font-family: Arial, sans-serif;
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    margin: 0;
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  margin: 0;
 }
 
 /* Header Styles */
 header {
-    background-color: #131842;
-    color: white;
-    padding: 1rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  background-color: #131842;
+  color: white;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 header .nav-left,
 header .nav-right {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
-/* Start Button Styles */
+/* Start Screen Styles */
 #startScreen {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  gap: 2rem;
 }
 
-#startScreen button {
-    padding: 1rem 2rem;
-    background-color: #131842;
-    color: white;
-    border: 2px solid #131842;
-    border-radius: 0.5rem;
-    cursor: pointer;
-    font-size: 1.2rem;
-    font-weight: bold;
-    margin: 0.5rem;
-    transition: background-color 0.3s, transform 0.3s;
+.retro-text {
+  font-size: 2rem;
+  font-family: "Press Start 2P";
 }
 
-#startScreen button:hover {
-    background-color: #1f2a6e; /* Darker shade for hover effect */
-    transform: scale(1.05);
-}
-
-#startScreen button:active {
-    background-color: #0d173f; /* Even darker shade for active effect */
-}
-
-/* Button Specific Styles */
-#startButton {
-    display: none; /* Hide original button */
-}
-
-/* New Timer Buttons */
 #startScreen .timer-buttons {
-    display: flex;
-    flex-direction: row;
-    gap: 1rem;
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  width: 100%;
+  justify-content: center;
 }
 
 #startScreen .timer-buttons button {
-    padding: 1rem 2rem;
-    background-color: #ECCEAE; /* Use the same color as the grid cells */
-    color: #131842;
-    border: 2px solid #131842;
-    border-radius: 0.5rem;
-    cursor: pointer;
-    font-size: 1.2rem;
-    font-weight: bold;
+  padding: 1rem 2rem;
+  background-color: #ecceae;
+  color: #131842;
+  border: 2px solid #131842;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-size: 1.2rem;
+  font-weight: bold;
+  transition: background-color 0.3s, transform 0.3s;
 }
 
-#startScreen .timer-buttons button:hover {
-    background-color: #E68369; /* Use the same color as selected cells */
+#startScreen .timer-buttons button.selected {
+  background-color: #e68369;
+}
+
+#startScreen button:hover {
+  background-color: #e68369;
+}
+
+#startScreen .timer-buttons button:active {
+  background-color: #e68369;
+}
+
+.input-container-wrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.input-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+  width: 100%;
+  max-width: 24rem;
+}
+
+.input-container input,
+.input-container button {
+  padding: 0.5rem;
+  font-size: 1.2rem;
+  border: 2px solid #131842;
+  border-radius: 0.5rem;
+}
+
+.input-container input {
+  flex-grow: 1;
+  background-color: #fbf6e2;
+  color: #131842;
+}
+
+.input-container button {
+  background-color: #131842;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.input-container button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+@media (min-width: 600px) {
+  .input-container {
+    max-width: calc(3 * 8rem + 2 * 1rem);
+  }
 }
 
 /* Main Styles */
 main {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
 
+#mainGameContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 600px;
+  height: 50vh;
+}
+
+#gameScreen {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  
+}
 
 /* Game Board Styles */
 #gameBoard.hidden {
-    display: none;
+  display: none;
 }
 
 .grid {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 1rem;
-    width: 100%;
-    max-width: 20rem;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+  width: 100%;
+  max-width: 20rem;
 }
 
 .cell {
-    width: 4rem;
-    height: 4rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #ECCEAE; 
-    color: #131842;
-    font-weight: bold;
-    font-size: 1.5rem;
-    border-radius: 0.5rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
-    border: 2px solid #131842;
+  width: 4rem;
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ecceae;
+  color: #131842;
+  font-weight: bold;
+  font-size: 1.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  border: 2px solid #131842;
 }
 
 /* Selected Cell Styles */
 .selected {
-    background-color: #E68369; 
-    border: 2px solid #131842; 
+  background-color: #e68369;
+  border: 2px solid #131842;
 }
 
 /* Selectable Cell Styles */
 .selectable {
-    background-color: #FBF6E2; 
-    border: 2px solid #131842;
+  background-color: #fbf6e2;
+  border: 2px solid #131842;
 }
 
 /* Word Input Container Styles */
 #wordInputSection {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    max-width: 20rem;
-    margin-top: 20px;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 20rem;
+  margin-top: 20px;
 }
 
 #currentWord {
-    flex-grow: 1;
-    background-color: #ECCEAE;
-    color: #131842;
-    font-weight: bold;
-    font-size: 1rem;
-    padding: 0.5rem;
-    border-radius: 0.5rem;
-    border: 2px solid #131842;
-    text-align: left;
+  flex-grow: 1;
+  background-color: #ecceae;
+  color: #131842;
+  font-weight: bold;
+  font-size: 1rem;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  border: 2px solid #131842;
+  text-align: left;
 }
 
 #buttonsContainer {
-    display: flex;
-    gap: 5px;
-    margin-left: 10px;
+  display: flex;
+  gap: 5px;
+  margin-left: 10px;
 }
 
 #buttonsContainer button {
-    padding: 0.5rem;
-    background-color: #131842;
-    color: white;
-    border: none;
-    border-radius: 0.5rem;
-    cursor: pointer;
-    font-size: 1.2rem;
-    width: 2.5rem;
-    height: 2.5rem;
+  padding: 0.5rem;
+  background-color: #131842;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-size: 1.2rem;
+  width: 2.5rem;
+  height: 2.5rem;
 }
 
 #buttonsContainer button:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Timer Styles */
+#timer {
+  flex-grow: 1;
+  background-color: #ecceae;
+  color: #131842;
+  font-weight: bold;
+  font-size: 1.5rem;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  border: 2px solid #131842;
+  margin-top: 20px;
+  max-width: 20rem;
+  text-align: center;
+  margin-bottom: 1rem;
+  transition: background-color 0.3s;
+}
+
+#timer.low-time {
+  color: red;
+}
+
+#timer.error {
+  background-color: #ff6666;
+}
+
+/* Over Screen styles */
+#overScreen {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+#overScreen .retro-text {
+  font-size: 2rem;
+  color: #ecceae;
+  font-family: "Press Start 2P", cursive;
+  margin-bottom: 1rem;
+}
+
+#overScreen button {
+  padding: 1rem 2rem;
+  background-color: #ecceae;
+  color: #131842;
+  border: 2px solid #131842;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-size: 1.2rem;
+  font-weight: bold;
+  transition: background-color 0.3s, transform 0.3s;
 }
 
 /* Found Words Container Styles */
 #foundWordsContainer {
-    margin-top: 20px;
+  margin-top: 20px;
 }
 
 /* Footer Styles */
 footer {
-    background-color: #131842;
-    color: white;
-    text-align: center;
-    padding: 1rem;
+  background-color: #131842;
+  color: white;
+  text-align: center;
+  padding: 1rem;
 }
 
 ul {
-    list-style-type: none;
-    padding: 0;
+  list-style-type: none;
+  padding: 0;
+}
+
+/* Side Containers Styles */
+.side-container {
+  background-color: #ecceae;
+  border-radius: 0.5rem;
+  border: 2px solid #131842;
+  padding: 1rem;
+  text-align: center;
+  width: 33vw;
+  min-height: 35vh;
+}
+
+#scoreBoard {
+  background-color: #d1e7dd;
+}
+
+#foundWordsContainer {
+  background-color: #f8d7da;
+}
+
+.side-container p {
+  font-weight: bold;
+}
+
+.side-container hr {
+  border: none;
+  height: 1px;
+  background-color: #131842;
+  margin-bottom: 1rem;
+}
+
+.side-container ul {
+  list-style-type: none;
+  padding: 0;
+  text-align: left;
+}
+
+.side-container ul li {
+  background-color: #fbf6e2;
+  margin: 0.5rem 0;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  border: 1px solid #131842;
 }

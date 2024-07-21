@@ -9,6 +9,12 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <header>
@@ -21,36 +27,56 @@
     </header>
     <main>
       <div id="startScreen">
+        <h1 class="retro-text">Boggle</h1>
         <div class="timer-buttons">
-          <button id="90SecondsButton">90 Seconds</button>
-          <button id="3MinutesButton">3 Minutes</button>
-          <button id="5MinutesButton">5 Minutes</button>
+          <button id="90SecondsButton" class="selectable">90 Seconds</button>
+          <button id="3MinutesButton" class="selectable selected">
+            3 Minutes
+          </button>
+          <button id="5MinutesButton" class="selectable">5 Minutes</button>
+        </div>
+        <div class="input-container">
+          <input type="text" id="playerName" placeholder="Nombre" />
+          <button id="startGameButton" disabled>Comenzar</button>
         </div>
       </div>
       <div id="gameBoard" class="hidden">
-        <div id="timer">
-          Tiempo restante: <span id="timeRemaining">60</span> segundos
-        </div>
-        <div id="board" class="grid"></div>
-        <div id="wordInputSection">
-          <div id="currentWord">Palabra:</div>
-          <div id="buttonsContainer">
-            <button id="checkWordButton" disabled>
-              <i class="fas fa-check"></i>
-            </button>
-            <button id="clearSelectionButton">
-              <i class="fas fa-times"></i>
-            </button>
-            <button id="removeLastLetterButton">
-              <i class="fas fa-backspace"></i>
-            </button>
+        <div id="gameScreen">
+          <div class="side-container" id="scoreBoard">
+            <p>Puntuaciones</p>
+            <hr />
+            <ul id="scoreList"></ul>
+          </div>
+          <div id="mainGameContainer">
+            <div>
+              <div id="timer"><span id="timeRemaining"></span> segundos</div>
+              <div id="board" class="grid"></div>
+              <div id="wordInputSection">
+                <div id="currentWord">Palabra:</div>
+                <div id="buttonsContainer">
+                  <button id="checkWordButton" disabled>
+                    <i class="fas fa-check"></i>
+                  </button>
+                  <button id="clearSelectionButton">
+                    <i class="fas fa-times"></i>
+                  </button>
+                  <button id="removeLastLetterButton">
+                    <i class="fas fa-backspace"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="side-container" id="foundWordsContainer">
+            <p>Palabras encontradas</p>
+            <hr />
+            <ul id="foundWordsList"></ul>
           </div>
         </div>
-        <div id="wordResult"></div>
-        <div id="foundWordsContainer">
-          <h3>Palabras encontradas:</h3>
-          <ul id="foundWordsList"></ul>
-        </div>
+      </div>
+      <div id="overScreen" class="hidden">
+        <h1 class="retro-text">Game Over</h1>
+        <button id="restartGameButton">Restart</button>
       </div>
     </main>
     <footer>
