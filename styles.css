@@ -12,15 +12,54 @@ header {
   background-color: #131842;
   color: white;
   padding: 1rem;
+}
+
+.navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
 }
 
-header .nav-left,
-header .nav-right {
+.nav-left,
+.nav-right {
   display: flex;
   align-items: center;
+}
+
+.nav-left span {
+  margin-right: 1rem;
+  font-family: "Press Start 2P", cursive;
+}
+
+.nav-left a {
+  text-decoration: none;
+  color: white;
+  font-family: "Press Start 2P", cursive;
+  margin-right: 1rem;
+}
+
+.nav-left a:visited,
+.nav-left a:active,
+.nav-left a:hover {
+  color: white; 
+}
+
+#contactButton {
+  padding: 0.5rem 1rem;
+  background-color: #ecceae;
+  color: #131842;
+  border: 2px solid #131842;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+#contactButton:hover {
+  background-color: #e68369;
+  transform: scale(1.05);
 }
 
 /* Start Screen Styles */
@@ -44,6 +83,8 @@ header .nav-right {
   gap: 1rem;
   width: 100%;
   justify-content: center;
+  align-items: center;
+  height: 3vh;
 }
 
 #startScreen .timer-buttons button {
@@ -81,6 +122,7 @@ header .nav-right {
   align-items: center;
   gap: 1rem;
   margin-top: 1rem;
+  flex-direction: row;
   width: 100%;
   max-width: 24rem;
 }
@@ -112,12 +154,6 @@ header .nav-right {
   cursor: not-allowed;
 }
 
-@media (min-width: 600px) {
-  .input-container {
-    max-width: calc(3 * 8rem + 2 * 1rem);
-  }
-}
-
 /* Main Styles */
 main {
   flex: 1;
@@ -135,7 +171,6 @@ main {
   justify-content: center;
   width: 100%;
   max-width: 600px;
-  height: 50vh;
 }
 
 #gameScreen {
@@ -151,15 +186,15 @@ main {
 }
 
 .grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+   display: flex;
+  flex-wrap: wrap;
   gap: 1rem;
   width: 100%;
   max-width: 20rem;
 }
 
 .cell {
-  width: 4rem;
+  width: calc(25% - 1rem); 
   height: 4rem;
   display: flex;
   align-items: center;
@@ -234,9 +269,10 @@ main {
 #timer {
   flex-grow: 1;
   background-color: #ecceae;
+  font-family: "Press Start 2P", cursive;
   color: #131842;
   font-weight: bold;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   padding: 0.5rem;
   border-radius: 0.5rem;
   border: 2px solid #131842;
@@ -249,7 +285,7 @@ main {
 }
 
 #timer.low-time {
-  color: red;
+  color: #ff6666; 
 }
 
 #timer.error {
@@ -260,14 +296,17 @@ main {
 #overScreen {
   display: none;
   flex-direction: column;
+  padding-left: 2rem;
+  padding-right: 2rem;
   justify-content: center;
   align-items: center;
   height: 100%;
+  gap: 20px;
 }
 
 #overScreen .retro-text {
   font-size: 2rem;
-  color: #ecceae;
+  color: black;
   font-family: "Press Start 2P", cursive;
   margin-bottom: 1rem;
 }
@@ -284,6 +323,42 @@ main {
   transition: background-color 0.3s, transform 0.3s;
 }
 
+#overScreen button:hover {
+  background-color: #e68369;
+  transform: scale(1.05);
+}
+
+#gameResult {
+  font-family: "Press Start 2P", cursive;
+  font-size: 1.2rem;
+  color: #131842;
+  margin-top: 20px;
+  background-color: #ecceae;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  border: 2px solid #131842;
+  text-align: center;
+}
+
+#scoreCounter {
+  font-family: "Press Start 2P", cursive;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  color: #131842;
+  margin-top: 10px;
+  background-color: #ecceae;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  border: 2px solid #131842;
+  height: 3vh;
+  flex-grow: 1;
+  font-weight: bold;
+  font-size: 1.2rem;
+  text-align: center;
+}
+
 /* Found Words Container Styles */
 #foundWordsContainer {
   margin-top: 20px;
@@ -297,10 +372,47 @@ footer {
   padding: 1rem;
 }
 
-ul {
-  list-style-type: none;
-  padding: 0;
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  justify-content: center;
 }
+
+.footer-content a {
+  color: white;
+  font-size: 2rem;
+  transition: color 0.3s, transform 0.3s;
+}
+
+.footer-content a:hover {
+  color: #e68369;
+  transform: scale(1.1);
+}
+
+.developers {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.footer-content p {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  font-size: 0.8rem;
+  color: gray;
+}
+
+.developers p {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  font-size: 1rem;
+  color: white;
+}
+
 
 /* Side Containers Styles */
 .side-container {
@@ -310,8 +422,34 @@ ul {
   padding: 1rem;
   text-align: center;
   width: 33vw;
-  min-height: 50vh;
+  min-height: 60vh;
   box-sizing: border-box;
+}
+
+#orderButtons {
+  display: flex;
+
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+#orderButtons button {
+  padding: 0.2rem 0.5rem;
+  background-color: #ecceae;
+  color: #131842;
+  margin-right: 1rem;
+  margin-left: 1rem;
+  border: 2px solid #131842;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+#orderButtons button:hover {
+  background-color: #e68369;
+  transform: scale(1.05);
 }
 
 #scoreBoard {
@@ -347,4 +485,179 @@ ul {
   border-radius: 0.25rem;
   border: 1px solid #131842;
   box-sizing: border-box;
+}
+
+/* Contact Form Styles */
+#contactFormContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background-color: #ecceae; 
+  border-radius: 0.5rem;
+  max-width: 600px;
+  margin: 2rem auto;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#contactForm {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+#contactFormContainer h1 {
+  font-size: x-large;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+#contactForm label {
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  color: #131842; 
+}
+
+#contactForm input,
+#contactForm textarea {
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  border: 2px solid #131842;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #fbf6e2; 
+  color: #131842;
+}
+
+#contactForm button {
+  padding: 0.5rem 1rem;
+  background-color: #131842;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+#contactForm button:hover {
+  transform: scale(1.05);
+}
+/* Modal Styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 600px;
+  text-align: center;
+  border-radius: 0.5rem;
+}
+
+.close-button {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close-button:hover,
+.close-button:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Media queries */
+
+@media (max-width: 600px) {
+  #startScreen .timer-buttons {
+    flex-direction: column;
+    height: auto;
+    align-items: stretch;
+  }
+
+  .input-container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+@media (min-width: 600px) {
+  .input-container {
+    max-width: calc(3 * 8rem + 2 * 1rem);
+  }
+}
+
+@media (max-width: 600px) {
+  .footer-content {
+    gap: 0.3rem;
+  }
+
+  .footer-content a {
+    font-size: 1.5rem;
+  }
+
+  .developers p {
+    font-size: 0.9rem;
+    line-height: 1.3rem;
+  }
+}
+
+
+@media (max-width: 600px) {
+  #gameScreen {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .side-container {
+    width: 100%;
+    min-height: auto;
+    margin-top: 1rem;
+  }
+}
+
+@media (max-width: 600px) {
+  #gameScreen {
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1rem;
+  }
+
+  .side-container {
+    width: 90vw;
+    min-height: auto;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  #mainGameContainer {
+    order: -1; /* First in mobile column */
+  }
+
+  #foundWordsContainer {
+    order: 0;
+  }
+
+  #scoreBoard {
+    order: 1;
+  }
 }

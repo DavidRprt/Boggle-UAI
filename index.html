@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Boggle Game</title>
+    <link rel="stylesheet" href="reset.css" />
     <link rel="stylesheet" href="styles.css" />
     <link
       rel="stylesheet"
@@ -18,10 +19,14 @@
   </head>
   <body>
     <header>
-      <nav>
-        <div class="nav-left">Boggle</div>
+      <nav class="navbar">
+        <div class="nav-left">
+          <a href="index.html"> <span>Boggle</span></a>
+        </div>
         <div class="nav-right">
-          Mejor Puntuación: <span id="highScore">0</span>
+          <a href="contact.html"
+            ><button id="contactButton">Contacto</button></a
+          >
         </div>
       </nav>
     </header>
@@ -45,10 +50,15 @@
           <div class="side-container" id="scoreBoard">
             <h4>Puntuaciones</h4>
             <hr />
+            <div id="orderButtons">
+              <button id="orderByScoreButton">Ordenar por Puntaje</button>
+              <button id="orderByDateButton">Ordenar por Fecha</button>
+            </div>
             <ul id="scoreList"></ul>
           </div>
           <div id="mainGameContainer">
             <div>
+              <div id="scoreCounter">PuntuaciÃ³n: 0</div>
               <div id="timer"><span id="timeRemaining"></span> segundos</div>
               <div id="board" class="grid"></div>
               <div id="wordInputSection">
@@ -76,11 +86,20 @@
       </div>
       <div id="overScreen" class="hidden">
         <h1 class="retro-text">Game Over</h1>
-        <button id="restartGameButton">Restart</button>
+        <div id="gameResult"></div>
+        <button id="restartGameButton">Volver al Inicio</button>
       </div>
     </main>
     <footer>
-      <p></p>
+      <div class="footer-content">
+        <a href="https://github.com/DavidRprt/Boggle-UAI" target="_blank">
+          <i class="fab fa-github"></i>
+        </a>
+        <p>Developed by</p>
+        <div class="developers">
+          <p>Augusto Baez - David Rapoport</p>
+        </div>
+      </div>
     </footer>
     <script src="js/board.js" defer></script>
     <script src="js/game.js" defer></script>
