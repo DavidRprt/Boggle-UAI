@@ -1,39 +1,44 @@
+'use strict';
+
 // Function to generate the board
 function generateBoard() {
-  const SIZE = 4
-  const frequentLetters = "AAEEEEIIOOU"
-  const infrequentLetters = "BCDFGHJKLMNPQRSTVWXYZSSRRLLNNTTMMCC"
-  let newBoard = Array.from({ length: SIZE }, () =>
-    Array.from({ length: SIZE }, () => "")
-  )
-  const totalVowels = 6
-  let vowelIndices = new Set()
+  var SIZE = 4;
+  var frequentLetters = "AAEEEEIIOOU";
+  var infrequentLetters = "BCDFGHJKLMNPQRSTVWXYZSSRRLLNNTTMMCC";
+  var newBoard = Array.from({ length: SIZE }, () =>
+    Array.from({ length: SIZE }, function () { return ""; })
+  );
+  var totalVowels = 6;
+  var vowelIndices = new Set();
 
+  // Select random indices for vowels
   while (vowelIndices.size < totalVowels) {
-    let randomIndex = Math.floor(Math.random() * SIZE * SIZE)
-    vowelIndices.add(randomIndex)
+    var randomIndex = Math.floor(Math.random() * SIZE * SIZE);
+    vowelIndices.add(randomIndex);
   }
 
-  for (let i = 0; i < SIZE; i++) {
-    for (let j = 0; j < SIZE; j++) {
-      let linearIndex = i * SIZE + j
+  // Fill the board with letters
+  for (var i = 0; i < SIZE; i++) {
+    for (var j = 0; j < SIZE; j++) {
+      var linearIndex = i * SIZE + j;
       if (vowelIndices.has(linearIndex)) {
         newBoard[i][j] =
-          frequentLetters[Math.floor(Math.random() * frequentLetters.length)]
+          frequentLetters[Math.floor(Math.random() * frequentLetters.length)];
       } else {
         newBoard[i][j] =
           infrequentLetters[
             Math.floor(Math.random() * infrequentLetters.length)
-          ]
+          ];
       }
     }
   }
 
-  for (let i = 0; i < SIZE; i++) {
-    for (let j = 0; j < SIZE; j++) {
+  // Ensure Q has adjacent U
+  for (i = 0; i < SIZE; i++) {
+    for (j = 0; j < SIZE; j++) {
       if (newBoard[i][j] === "Q") {
-        let hasAdjacentU = false
-        const directions = [
+        var hasAdjacentU = false;
+        var directions = [
           [1, 0],
           [0, 1],
           [-1, 0],
@@ -41,11 +46,13 @@ function generateBoard() {
           [1, 1],
           [-1, -1],
           [1, -1],
-          [-1, 1],
-        ]
-        for (let [dx, dy] of directions) {
-          let ni = i + dx,
-            nj = j + dy
+          [-1, 1]
+        ];
+        for (var d = 0; d < directions.length; d++) {
+          var dx = directions[d][0];
+          var dy = directions[d][1];
+          var ni = i + dx,
+              nj = j + dy;
           if (
             ni >= 0 &&
             ni < SIZE &&
@@ -53,15 +60,17 @@ function generateBoard() {
             nj < SIZE &&
             newBoard[ni][nj] === "U"
           ) {
-            hasAdjacentU = true
-            break
+            hasAdjacentU = true;
+            break;
           }
         }
         if (!hasAdjacentU) {
-          let placed = false
-          for (let [dx, dy] of directions) {
-            let ni = i + dx,
-              nj = j + dy
+          var placed = false;
+          for (d = 0; d < directions.length; d++) {
+            dx = directions[d][0];
+            dy = directions[d][1];
+            ni = i + dx;
+            nj = j + dy;
             if (
               ni >= 0 &&
               ni < SIZE &&
@@ -69,20 +78,19 @@ function generateBoard() {
               nj < SIZE &&
               !vowelIndices.has(ni * SIZE + nj)
             ) {
-              newBoard[ni][nj] = "U"
-              placed = true
-              break
+              newBoard[ni][nj] = "U";
+              placed = true;
+              break;
             }
           }
           if (!placed && i < SIZE - 1) {
-            newBoard[i + 1][j] = "U"
+            newBoard[i + 1][j] = "U";
           }
         }
       }
     }
   }
 
-  return newBoard
+  return newBoard;
 }
-
 
