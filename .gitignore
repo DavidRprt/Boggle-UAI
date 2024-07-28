@@ -1,0 +1,25 @@
+# Ignore logs and temporary files
+*.log
+*.tmp
+*.temp
+
+# Ignore OS-generated files
+.DS_Store
+Thumbs.db
+
+# Ignore editor-specific files
+.vscode/
+.idea/
+*.swp
+
+# Ignore build directories
+dist/
+build/
+
+# Ignore any other temporary or build directories
+tmp/
+temp/
+
+# Ignore dependency directories (just in case)
+node_modules/
+bower_components/
