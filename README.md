@@ -78,10 +78,6 @@ Las contribuciones son bienvenidas. Si deseas contribuir a este proyecto, por fa
 - Augusto Baez
 - David Rapoport
 
-## Licencia
-
-Este proyecto está licenciado bajo la Licencia MIT. Consulta el archivo [LICENSE](LICENSE) para obtener más detalles.
-
 ---
 
 Si tienes alguna pregunta o sugerencia, no dudes en contactarnos.
