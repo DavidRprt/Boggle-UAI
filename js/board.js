@@ -160,12 +160,6 @@ function startGame() {
   document.getElementById("gameBoard").style.display = "block"
   renderBoard()
   setTimer(selectedDuration)
-  console.log(
-    "Game started with duration: " +
-      selectedDuration +
-      " seconds and player name: " +
-      playerName
-  )
 }
 
 // Function to set the timer
@@ -178,20 +172,16 @@ function setTimer(duration) {
   timerInterval = setInterval(function () {
     duration--
     timeRemainingElement.textContent = duration
-    console.log("Time remaining: " + duration)
 
     if (duration <= 10) {
       timerElement.classList.add("low-time")
-      console.log("Added low-time class")
     } else {
       timerElement.classList.remove("low-time")
-      console.log("Removed low-time class")
     }
 
     if (duration <= 0) {
       clearInterval(timerInterval)
       endGame()
-      console.log("Game ended")
     }
   }, 1000) // Update every second
 }
