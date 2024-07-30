@@ -17,7 +17,6 @@ El juego de Boggle es un juego de palabras donde los jugadores intentan encontra
   - [Tecnologías Utilizadas](#tecnologías-utilizadas)
   - [Contribuciones](#contribuciones)
   - [Autores](#autores)
-  - [Licencia](#licencia)
 
 ## Características
 
