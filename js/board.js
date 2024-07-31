@@ -3,7 +3,7 @@
 // Global variables
 var selectedCells = []
 var lastSelectedCell = null
-var selectedDuration = 15
+var selectedDuration = 180
 var timerInterval = null
 var dictionary = []
 var score = 0
@@ -181,7 +181,6 @@ function setTimer(duration) {
 
     if (duration <= 0) {
       clearInterval(timerInterval)
-      console.log("JUEGO TERMINADO")
       endGame()
     }
   }, 1000) // Update every second
@@ -343,7 +342,6 @@ function updateScore() {
 
 // Function to end the game
 function endGame() {
-  console.log("HERE")
   var playerName = document.getElementById("playerName").value.trim()
   saveGameResult(playerName, score)
 
@@ -375,12 +373,9 @@ function saveGameResult(playerName, score) {
 
 // Functions to parse and format dates for ranking
 function parseDate(dateString) {
-  // Añadir chequeo para asegurarse de que dateString no es nulo o indefinido
   if (!dateString) {
     return null
   }
-
-  // Utilizar regex para validar y extraer partes de la fecha
   var parts = dateString.match(
     /(\d+)\/(\d+)\/(\d+), (\d+):(\d+):(\d+) (\w+\.\w+\.)/
   )
@@ -402,7 +397,6 @@ function parseDate(dateString) {
     hours = 0
   }
 
-  // Validar que todas las partes de la fecha fueron correctamente extraídas
   if (
     isNaN(day) ||
     isNaN(month) ||
