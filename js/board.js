@@ -3,7 +3,7 @@
 // Global variables
 var selectedCells = []
 var lastSelectedCell = null
-var selectedDuration = 180
+var selectedDuration = 15
 var timerInterval = null
 var dictionary = []
 var score = 0
@@ -181,6 +181,7 @@ function setTimer(duration) {
 
     if (duration <= 0) {
       clearInterval(timerInterval)
+      console.log("JUEGO TERMINADO")
       endGame()
     }
   }, 1000) // Update every second
@@ -286,130 +287,198 @@ window.onload = async function () {
 // Function to check if the current word is in the dictionary
 function checkWord() {
   var currentWord = selectedCells
-    .map(function(cell) { return cell.textContent; })
+    .map(function (cell) {
+      return cell.textContent
+    })
     .join("")
-    .toLowerCase();
+    .toLowerCase()
   var foundWords = Array.from(
     document.getElementById("foundWordsList").children
-  ).map(function(item) { return item.textContent.toLowerCase(); });
+  ).map(function (item) {
+    return item.textContent.toLowerCase()
+  })
 
   if (dictionary.includes(currentWord)) {
     if (foundWords.includes(currentWord)) {
-      flashTimerBackground();
+      flashTimerBackground()
     } else {
-      addWordToList(currentWord);
+      addWordToList(currentWord)
     }
   } else {
-    flashTimerBackground();
+    flashTimerBackground()
   }
-  clearSelection();
+  clearSelection()
 }
 
 // Function to flash the timer background if the word is not in the dictionary
 function flashTimerBackground() {
-  var timerElement = document.getElementById("timer");
-  timerElement.classList.add("error");
-  setTimeout(function() {
-    timerElement.classList.remove("error");
-  }, 1000); // Background stays dark for 1 second
+  var timerElement = document.getElementById("timer")
+  timerElement.classList.add("error")
+  setTimeout(function () {
+    timerElement.classList.remove("error")
+  }, 1000) // Background stays dark for 1 second
 
   if (score > 0) {
-    score -= 1;
+    score -= 1
   }
-  updateScore();
+  updateScore()
 }
 
 // Function to add the found word to the list
 function addWordToList(word) {
-  var foundWordsList = document.getElementById("foundWordsList");
-  var listItem = document.createElement("li");
-  listItem.textContent = word;
-  foundWordsList.appendChild(listItem);
+  var foundWordsList = document.getElementById("foundWordsList")
+  var listItem = document.createElement("li")
+  listItem.textContent = word
+  foundWordsList.appendChild(listItem)
 
-  score += word.length;
-  updateScore();
+  score += word.length
+  updateScore()
 }
 
 // Function to update the score display
 function updateScore() {
-  var scoreCounter = document.getElementById("scoreCounter");
-  scoreCounter.textContent = "Puntuación: " + score;
+  var scoreCounter = document.getElementById("scoreCounter")
+  scoreCounter.textContent = "Puntuación: " + score
 }
 
 // Function to end the game
 function endGame() {
-  var playerName = document.getElementById("playerName").value.trim();
-  saveGameResult(playerName, score);
+  console.log("HERE")
+  var playerName = document.getElementById("playerName").value.trim()
+  saveGameResult(playerName, score)
 
-  document.getElementById("gameBoard").style.display = "none";
-  var gameResultElement = document.getElementById("gameResult");
-  gameResultElement.innerHTML = "<p>" + playerName + ": " + score + " puntos</p><p>" + new Date().toLocaleString() + "</p>";
-  document.getElementById("overScreen").style.display = "flex";
+  document.getElementById("gameBoard").style.display = "none"
+  var gameResultElement = document.getElementById("gameResult")
+  gameResultElement.innerHTML =
+    "<p>" +
+    playerName +
+    ": " +
+    score +
+    " puntos</p><p>" +
+    new Date().toLocaleString() +
+    "</p>"
+  document.getElementById("overScreen").style.display = "flex"
 }
 
 // Function to save result
 function saveGameResult(playerName, score) {
-  var results = JSON.parse(localStorage.getItem("gameResults")) || [];
+  var results = JSON.parse(localStorage.getItem("gameResults")) || []
   var gameResult = {
     name: playerName,
     score: score,
     date: new Date().toLocaleString(),
-  };
-  results.push(gameResult);
-  localStorage.setItem("gameResults", JSON.stringify(results));
-  showRanking();
+  }
+  results.push(gameResult)
+  localStorage.setItem("gameResults", JSON.stringify(results))
+  showRanking()
 }
 
 // Functions to parse and format dates for ranking
 function parseDate(dateString) {
-  var parts = dateString.match(/(\d+)\/(\d+)\/(\d+), (\d+):(\d+):(\d+) (\w+\.\w+\.)/);
-  var day = parts[1], month = parts[2], year = parts[3];
-  var hours = parseInt(parts[4], 10), minutes = parts[5], seconds = parts[6];
-  var period = parts[7];
-
-  if (period.toLowerCase() === "p.m." && hours !== 12) {
-    hours += 12;
-  } else if (period.toLowerCase() === "a.m." && hours === 12) {
-    hours = 0;
+  // Añadir chequeo para asegurarse de que dateString no es nulo o indefinido
+  if (!dateString) {
+    return null
   }
 
-  var isoString = year + "-" + month.padStart(2, "0") + "-" + day.padStart(2, "0") + "T" +
-    hours.toString().padStart(2, "0") + ":" + minutes + ":" + seconds;
-  return new Date(isoString);
+  // Utilizar regex para validar y extraer partes de la fecha
+  var parts = dateString.match(
+    /(\d+)\/(\d+)\/(\d+), (\d+):(\d+):(\d+) (\w+\.\w+\.)/
+  )
+  if (!parts) {
+    return null
+  }
+
+  var day = parts[1],
+    month = parts[2],
+    year = parts[3]
+  var hours = parseInt(parts[4], 10),
+    minutes = parts[5],
+    seconds = parts[6]
+  var period = parts[7]
+
+  if (period.toLowerCase() === "p.m." && hours !== 12) {
+    hours += 12
+  } else if (period.toLowerCase() === "a.m." && hours === 12) {
+    hours = 0
+  }
+
+  // Validar que todas las partes de la fecha fueron correctamente extraídas
+  if (
+    isNaN(day) ||
+    isNaN(month) ||
+    isNaN(year) ||
+    isNaN(hours) ||
+    isNaN(minutes) ||
+    isNaN(seconds)
+  ) {
+    return null
+  }
+
+  var isoString =
+    year +
+    "-" +
+    month.padStart(2, "0") +
+    "-" +
+    day.padStart(2, "0") +
+    "T" +
+    hours.toString().padStart(2, "0") +
+    ":" +
+    minutes +
+    ":" +
+    seconds
+
+  var parsedDate = new Date(isoString)
+  return isNaN(parsedDate) ? null : parsedDate
 }
 
 function formatDate(date) {
+  if (!date) {
+    return "Invalid date"
+  }
   var options = {
     year: "numeric",
     month: "short",
     day: "numeric",
     hour: "2-digit",
     minute: "2-digit",
-  };
-  return date.toLocaleDateString("es-ES", options);
+  }
+  return date.toLocaleDateString("es-ES", options)
 }
 
 // Function to show ranking
 function showRanking(orderBy) {
-  if (orderBy === undefined) { orderBy = "score"; }
-  var results = JSON.parse(localStorage.getItem("gameResults")) || [];
+  if (orderBy === undefined) {
+    orderBy = "score"
+  }
+  var results = JSON.parse(localStorage.getItem("gameResults")) || []
   var sortedResults = results
-    .sort(function(a, b) {
-      if (orderBy === "score") {
-        return b.score - a.score;
-      } else {
-        return parseDate(b.date) - parseDate(a.date); // Descending date order
+    .map(function (result) {
+      var parsedDate = parseDate(result.date)
+      return {
+        ...result,
+        parsedDate: parsedDate,
       }
     })
-    .slice(0, 7);
+    .filter(function (result) {
+      return result.parsedDate !== null 
+    })
+    .sort(function (a, b) {
+      if (orderBy === "score") {
+        return b.score - a.score
+      } else {
+        return b.parsedDate - a.parsedDate 
+      }
+    })
+    .slice(0, 7)
 
-  var scoreList = document.getElementById("scoreList");
-  scoreList.innerHTML = "";
+  var scoreList = document.getElementById("scoreList")
+  scoreList.innerHTML = ""
 
-  sortedResults.forEach(function(result) {
-    var listItem = document.createElement("li");
-    var formattedDate = formatDate(parseDate(result.date));
-    listItem.textContent = result.name + ": " + result.score + " puntos (" + formattedDate + ")";
-    scoreList.appendChild(listItem);
-  });
+  sortedResults.forEach(function (result) {
+    var listItem = document.createElement("li")
+    var formattedDate = formatDate(result.parsedDate)
+    listItem.textContent =
+      result.name + ": " + result.score + " puntos (" + formattedDate + ")"
+    scoreList.appendChild(listItem)
+  })
 }
